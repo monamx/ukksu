@@ -1,0 +1,847 @@
+:root {
+  --border-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: w;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* CSS Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: #333;
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 999999;
+  width: 100%;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 15px;
+  cursor: pointer;
+  border: 1px solid #555;
+  padding: 5px;
+  border-radius: 7.5px;
+}
+
+.navbar-left .sidebar-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.navbar-left span {
+  font-size: 24px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.navbar-left .judul {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.navbar-divider {
+  border-right: 2px solid #333;
+  margin: 0 10px;
+  align-self: stretch;
+  height: 36px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  margin-right: 10px;
+}
+
+.navbar-notification {
+  position: relative;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -7px;
+  right: -1px;
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.5px 5px;
+}
+
+.navbar-right span {
+  font-size: 12px;
+}
+
+.profile {
+  border: 1px solid #555;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.navbar-collapse, .navbar-notification, .profile {
+  display: flex;
+  align-items: center;
+}
+
+.notification-popup {
+  position: absolute;
+  right: -10px;
+  top: 35px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 15px;
+  min-width: 300px;
+}
+
+.notification-content {
+  margin-bottom: 10px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.notification-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.notification-actions a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 7.5px 7.5px 0 7.5px;
+  padding: 5px;
+  font-size: 12.5px;
+  background: #ededed;
+  border: 1px solid #9999;
+  border-radius: 7.5px;
+}
+
+.notification-actions a:hover {
+  text-decoration: underline;
+}
+
+.profile-popup {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 15px;
+  min-width: 200px;
+}
+
+.profile-content a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  padding-left: 15px;
+  font-size: 15px;
+}
+
+.profile-content a:hover {
+  background-color: #f5f5f5;
+}
+
+/* CSS Sidebar */
+.sidebar {
+  background-color: #fff;
+  color: #333;
+  position: fixed;
+  width: 280px;
+  padding: 67px 15px 1px 15px;
+  min-height: 100vh;
+  display: block;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-hide {
+  display: none;
+  margin-left: 0 !important;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-bottom: 10px;
+}
+
+.sidebar li {
+  margin: 5px 0;
+  border-radius: 10px;
+}
+
+.sidebar li a {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.sidi {
+  margin-right: 10px;
+}
+
+.sidebar li:hover {
+  background: #999;
+  color: #fff;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.submenu {
+  list-style: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.submenu-hide {
+  display: none;
+}
+
+.submenu li {
+  padding: 1px;
+  margin-left: 15px;
+  margin: 3px;
+  width: 100%;
+}
+
+.submenu li a {
+  text-decoration: none;
+  color: #333;
+  width: 90%;
+  display: block;
+  background-color: #fff;
+  padding: 7.5px;
+  margin: 0 10px;
+  font-size: 14px;
+  border-radius: 7.5px;
+  transition: color 0.2s;
+}
+
+.submenu li a:hover {
+  background: #ddd;
+  color: #000;
+}
+
+/* CSS untuk TabelData */
+.tabeldata-container {
+  flex: 1;
+  padding: 30px;
+  max-height: 100vh;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+}
+
+thead {
+  background-color: #f0f0f0;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+tbody {
+  border-bottom: 1px solid #333;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ccc;
+}
+
+tbody td, th {
+  padding: 10px;
+  border: none;
+  font-size: 14px;
+  text-align: center;
+}
+
+.thleft {
+  text-align: start;
+}
+
+td.cell {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+  padding-left: 40px;
+}
+
+.cell .options  {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  cursor: pointer;
+  gap: 15px;
+}
+
+tr.row:hover .options {
+  opacity: 1;
+}
+
+.table-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 12.5px 15px;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+  border-radius: 20px 20px 0 0;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon {
+  font-size: 20px;
+  margin-right: 17.5px;
+  cursor: pointer;
+}
+
+.search-input {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  font-size: 13.5px;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+  border-radius: 0 0 20px 20px;
+}
+
+.row-select {
+  margin: 0 7.5px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  font-size: 13px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.row-count {
+  margin: 0 10px;
+}
+
+.prev-page,
+.next-page {
+  display: flex;
+  text-decoration: none;
+  padding: 2px 2px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.entri-pembayaran {
+  width: 300px;
+  max-width: 600px;
+  margin: 30px 0 40px 30px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Optional: Style for error messages */
+input:invalid {
+  border-color: #ff7b7b;
+}
+
+/* Optional: Style for error messages */
+input + span {
+  color: #ff7b7b;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* CSS untuk Form Data Buku */
+.data-buku {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-left: 280px;
+  margin-top: 66px;
+}
+
+.data-buku .formbuku-container {
+  display: none;
+  width: 90%;
+  padding: 25px;
+  margin: 35px 0 0;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.data-buku .input-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.data-buku .input-form label {
+  flex: 1 1.01 100%;
+  margin: 10px;
+}
+
+.data-buku .input-form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-buku .input-form input {
+  width: 100%;
+  height: 35px;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.data-buku .input-form button {
+  width: 85%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  height: 3rem;
+  margin: 17px 10px 10px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.data-buku .input-form button:hover {
+  background-color: #0056b3;
+}
+
+.sh-form {
+  margin-top: 25px;
+  text-align: center;
+  border: 2px solid #999;
+  border-radius: 100px;
+  cursor: pointer;
+  padding: 6px 6px 2px;
+}
+
+.show-form, .tagpop-show {
+  display: block !important;
+}
+
+
+
+
+
+/* Styling popup */
+.kategori-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 25px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.kategori-popup .popup-content {
+  width: 500px;
+  margin: 10px 10px 0;
+  text-align: center;
+}
+
+.kategori-popup .close {
+  position: absolute;
+  top: 6.3px;
+  right: 7.5px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 0 7px 4px 7px;
+}
+
+.kategori-popup .search-input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 15px;
+  outline: none;
+  font-size: 17px;
+}
+
+.kategori-popup .list-cat {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #999;
+  overscroll-behavior: contain;
+  text-align: justify;
+}
+
+.kategori-popup .list-cat ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.kategori-popup .list-cat li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  justify-content: space-between;
+  display: flex;
+}
+
+.kategori-popup .list-cat li:hover {
+  background-color: #d6d6d6;
+}
+
+.kategori-popup button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 13px;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.kategori-popup .list-cat li:last-child {
+  border-bottom: none;
+}
+
+.kategori-popup button:hover {
+  background-color: #45a049;
+}
+
+.kategori-popup .delete-icon, .kategori-popup .options-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.kategori-popup .options {
+  display: none;
+  align-items: center;
+}
+
+.kategori-popup .list-cat li:hover .options {
+  display: flex;
+}
+
+/* Cards CSS */
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 25px 0;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  position: relative;
+}
+
+.card-header {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.card-body {
+  padding: 20px 15px 10px 20px;
+  position: relative;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-author, .card-publisher {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.card-pubyear {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.card-rating {
+  font-size: 17px;
+  color: #f39c12;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-container span {
+  color: gray;
+  cursor: pointer;
+}
+
+.icon-group {
+  display: flex;
+  gap: 5px;
+}
+
+/* Cards Ulasan PopUp CSS */
+.ulasan-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.ulasan-show {
+  display: block;
+}
+
+.list-ulasan {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.ulasan-popup-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+}
+
+.nama {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ulasan {
+  font-size: 17px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.rating {
+  font-size: 15px;
+  color: #f39c12;
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-ulasan {
+  margin-top: 20px;
+}
+
+.form-ulasan span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* .form-ulasan label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+} */
+
+.form-ulasan input,
+.form-ulasan textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 14px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#ulasanPopup.show {
+  display: block;
+}
+
+/* Tambahan animasi */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+#ulasanPopup {
+  animation: fadeIn 0.3s ease-in-out;
+}
