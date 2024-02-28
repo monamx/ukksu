@@ -1,0 +1,2 @@
+DATABASE_URL=mysql://muna:muna@localhost:3306/perpus
+JWT_SECRET=adhvaudavyudguahjdhaudgduwudghwiwdadhuiatsc9wodwqoi
